@@ -22,21 +22,24 @@ Imagine you have much more projects, and you're working on much more tickets. No
 but you don't remember what projects you have changed for this feature:
 
 ```bash
-$ ./git-checkouter.sh ~work xxx dry-run
+$ ./git-checkouter.sh -p ~/work -b xxx -d
 'xxx' found in 'project1'
 'xxx' found in 'project2'
 'xxx' found in 'project4'
 ```
 
-providing `dry-run` will only list which projects includes the branch, and will not actually checkout.
+providing `-d` will only list which projects includes the branch, and will not actually checkout.
+
+It is also possible to set an environment variable: `export PROJECTS_DIR=~/work` and omit the `-p` flag.
 
 After you saw which projects you changed for that specific feature, you can checkout the branch in all of them:
 
 ```bash
-$ ./git-checkouter.sh ~work xxx
-Switched to branch 'xxx'
-Switched to branch 'xxx'
-Switched to branch 'xxx'
+$ ./git-checkouter.sh -p ~/work -b xxx
+project1: Switched to branch 'xxx'
+project2: Switched to branch 'xxx'
+project3: Switched to branch 'xxx'
+project4: Switched to branch 'xxx'
 ```
 
 Note that it's assumed that you have the same branch name in different projects for the same feature.
