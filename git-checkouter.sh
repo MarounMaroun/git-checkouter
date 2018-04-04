@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export CYAN='\033[1;36m'
-export NC='\033[0m'
+CYAN='\033[1;36m'
+NC='\033[0m'
 
 display_usage() {
   echo "Usage: $(basename "$0") [OPTIONS]"
