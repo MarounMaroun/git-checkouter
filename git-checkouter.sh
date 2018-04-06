@@ -23,18 +23,18 @@ branch=''
 while getopts 'p:b:d' flag; do
   case "${flag}" in
     p)
-	  projects="${OPTARG}"
-	  ;;
+      projects="${OPTARG}"
+      ;;
     b)
-	  branch=${OPTARG}
-	  ;;
+      branch=${OPTARG}
+      ;;
     d)
-	  dry="true"
-	  ;;
+      dry="true"
+      ;;
     *)
-	  display_usage
-	  exit 1
-	  ;;
+      display_usage
+      exit 1
+      ;;
   esac
 done
 
@@ -49,13 +49,13 @@ for d in $projects/*; do
   cd $d
   if [ -d ".git" ]; then
     branches=$(git branch | cut -c 3-)
-	branch_found=$(echo $branches | grep -oP "\b$branch\b")
-	if [[ -z "$branch_found" ]]; then continue; fi
-	if [[ ! -z "$dry" ]]; then
-	  printf "'$branch' found in ${CYAN}'$(basename $d)'${NC}\n"
-	else
-	  printf "${CYAN}$(basename $d): ${NC}"
+    branch_found=$(echo $branches | grep -oP "\b$branch\b")
+    if [[ -z "$branch_found" ]]; then continue; fi
+    if [[ ! -z "$dry" ]]; then
+      printf "'$branch' found in ${CYAN}'$(basename $d)'${NC}\n"
+    else
+      printf "${CYAN}$(basename $d): ${NC}"
       git checkout $branch
-	fi
+    fi
   fi
 done
