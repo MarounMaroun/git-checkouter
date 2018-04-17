@@ -3,6 +3,8 @@
 A tool that iterates on your parent Git folder (that includes all of your Git projects),
 and checkouts the given branch for each project.
 
+![git-checkouter](.meta/git-checkouter.gif)
+
 
 ## What?
 
