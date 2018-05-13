@@ -44,4 +44,14 @@ project3: Switched to branch 'xxx'
 project4: Switched to branch 'xxx'
 ```
 
+If you want to ignore some projects, you can provide the `-e` flag:
+
+```bash
+$ ./git-checkouter.sh -p ~/work -b master -e project2,project3
+project1: Switched to branch 'xxx'
+Project excluded: project2
+Project excluded: project3
+project4: Switched to branch 'xxx'
+```
+
 Note that it's assumed that you have the same branch name in different projects for the same feature.
