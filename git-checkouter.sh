@@ -78,7 +78,6 @@ for d in $projects/*; do
     else
       printf "${CYAN}$(basename $d): ${NC}"
       project_name=$(basename $d)
-      echo $exclude_projects
       if [[ $exclude_projects =~ .*$project_name.* ]]; then
         printf "${YELLOW}Project excluded:${NC} $project_name\n"
         continue
