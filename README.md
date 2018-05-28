@@ -1,7 +1,7 @@
 # Git Checkouter
 
 A tool that iterates on your parent Git folder (that includes all of your Git projects),
-and checkouts the given branch for each project.
+and checkouts, lists, or rebase on top of master the given branch for each project.
 
 ![git-checkouter](.meta/git-checkouter.gif)
 
@@ -52,6 +52,17 @@ project1: Switched to branch 'xxx'
 Project excluded: project2
 Project excluded: project3
 project4: Switched to branch 'xxx'
+```
+
+Sync all branches with remote master using the `-f` flag:
+
+
+```bash
+$ ./git-checkouter.sh -p ~/work -f
+Rebasing project1: Current branch master is up to date.
+Rebasing project2: Fast-forwarded xxx to origin/master.
+Rebasing project3: Current branch xxx is up to date.
+Rebasing project4: Current branch xxx is up to date.
 ```
 
 Note that it's assumed that you have the same branch name in different projects for the same feature.

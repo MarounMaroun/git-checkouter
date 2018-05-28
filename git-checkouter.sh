@@ -13,6 +13,7 @@ display_usage() {
   echo "  -d  only print projects that have the given branch,"
   echo "        without actually check it out"
   echo "  -e  projects to exclude, separated by \",\" without spaces"
+  echo "  -f  rebase all directories with remote master branch"
   echo ""
   echo "Bugs and suggestions: <https://github.com/MarounMaroun/git-checkouter/issues>"
   exit 1
@@ -22,8 +23,9 @@ projects=$PROJECTS_DIR
 dry=''
 branch=''
 exclude=''
+fetch=''
 
-while getopts 'p:b:de:' flag; do
+while getopts 'p:b:de:f' flag; do
   case "${flag}" in
     p)
       projects=${OPTARG}
@@ -37,6 +39,9 @@ while getopts 'p:b:de:' flag; do
     e)
 	  exclude=${OPTARG}
 	  ;;
+	f)
+	  fetch="true"
+	  ;;
     *)
       display_usage
       exit 1
@@ -44,8 +49,9 @@ while getopts 'p:b:de:' flag; do
   esac
 done
 
-if [[ -z "$branch" || -z "$projects" ]]; then
-  echo "Error: both branch and projects dir must be specified"
+if [[ (-z "$branch" || -z "$projects") && "$fetch" != true ]]; then
+  echo "Error: both branch and projects dirs must be specified,"
+  echo "unless you're using -f flag"
   echo ""
   display_usage
 fi
@@ -59,6 +65,11 @@ for d in $projects/*; do
   if [[ ! -d "$d" ]]; then continue; fi
   cd $d
   if [ -d ".git" ]; then
+    if [[ "$fetch" = true ]]; then
+      printf "Rebasing branch ${CYAN}$(basename $d): ${NC}"
+      git fetch && git rebase origin/master
+      continue
+    fi
     branches=$(git branch | cut -c 3-)
     branch_found=$(echo $branches | grep -oP "\b$branch\b")
     if [[ -z "$branch_found" ]]; then continue; fi
