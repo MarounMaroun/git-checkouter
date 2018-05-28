@@ -65,4 +65,11 @@ Rebasing project3: Current branch xxx is up to date.
 Rebasing project4: Current branch xxx is up to date.
 ```
 
+
+## Install
+
+```bash
+make install
+```
+
 Note that it's assumed that you have the same branch name in different projects for the same feature.
