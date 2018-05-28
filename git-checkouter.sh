@@ -13,7 +13,7 @@ display_usage() {
   echo "  -d  only print projects that have the given branch,"
   echo "        without actually check it out"
   echo "  -e  projects to exclude, separated by \",\" without spaces"
-  echo "  -f  rebase all directories with remote master branch"
+  echo "  -f  rebase all directories on top of remote master branch"
   echo ""
   echo "Bugs and suggestions: <https://github.com/MarounMaroun/git-checkouter/issues>"
   exit 1
