@@ -37,11 +37,11 @@ while getopts 'p:b:de:f' flag; do
       dry="true"
       ;;
     e)
-	  exclude=${OPTARG}
-	  ;;
-	f)
-	  fetch="true"
-	  ;;
+      exclude=${OPTARG}
+      ;;
+    f)
+      fetch="true"
+      ;;
     *)
       display_usage
       exit 1
@@ -77,12 +77,12 @@ for d in $projects/*; do
       printf "'$branch' found in ${CYAN}'$project_name'${NC}\n"
     else
       printf "${CYAN}$(basename $d): ${NC}"
-	  project_name=$(basename $d)
-	  echo $exclude_projects
-	  if [[ $exclude_projects =~ .*$project_name.* ]]; then
-	    printf "${YELLOW}Project excluded:${NC} $project_name\n"
-	    continue
-	  fi
+      project_name=$(basename $d)
+      echo $exclude_projects
+      if [[ $exclude_projects =~ .*$project_name.* ]]; then
+        printf "${YELLOW}Project excluded:${NC} $project_name\n"
+        continue
+      fi
       git checkout $branch
     fi
   fi
